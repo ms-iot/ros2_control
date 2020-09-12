@@ -27,7 +27,6 @@ template<class HandleType>
 class Handle
 {
 public:
-  HARDWARE_INTERFACE_PUBLIC
   Handle(
     const std::string & name, const std::string & interface_name,
     double * value_ptr = nullptr)
@@ -35,32 +34,27 @@ public:
   {
   }
 
-  HARDWARE_INTERFACE_PUBLIC
   HandleType with_value_ptr(double * value_ptr)
   {
     return HandleType(name_, interface_name_, value_ptr);
   }
 
-  HARDWARE_INTERFACE_PUBLIC
   const std::string & get_name() const
   {
     return name_;
   }
 
-  HARDWARE_INTERFACE_PUBLIC
   const std::string & get_interface_name() const
   {
     return interface_name_;
   }
 
-  HARDWARE_INTERFACE_PUBLIC
   double get_value() const
   {
     THROW_ON_NULLPTR(value_ptr_);
     return *value_ptr_;
   }
 
-  HARDWARE_INTERFACE_PUBLIC
   void set_value(double value)
   {
     THROW_ON_NULLPTR(value_ptr_);
