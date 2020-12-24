@@ -25,6 +25,7 @@
 #include "hardware_interface/loaned_state_interface.hpp"
 #include "hardware_interface/hardware_info.hpp"
 #include "hardware_interface/types/hardware_interface_status_values.hpp"
+#include "hardware_interface/visibility_control.h"
 
 namespace hardware_interface
 {
@@ -37,6 +38,7 @@ class ResourceManager
 {
 public:
   /// Default constructor for the Resource Manager.
+  HARDWARE_INTERFACE_PUBLIC
   ResourceManager();
 
   /// Constructor for the Resource Manager.
@@ -52,11 +54,13 @@ public:
    * \param validate_interfaces boolean argument indicating whether the exported
    * interfaces ought to be validated. Defaults to true.
    */
+  HARDWARE_INTERFACE_PUBLIC
   explicit ResourceManager(
     const std::string & urdf, bool validate_interfaces = true);
 
   ResourceManager(const ResourceManager &) = delete;
 
+  HARDWARE_INTERFACE_PUBLIC
   ~ResourceManager();
 
   /// Load resources from on a given URDF.
@@ -69,6 +73,7 @@ public:
    * \param validate_interfaces boolean argument indicating whether the exported
    * interfaces ought to be validated. Defaults to true.
    */
+  HARDWARE_INTERFACE_PUBLIC
   void load_urdf(const std::string & urdf, bool validate_interfaces = true);
 
   /// Claim a state interface given its key.
@@ -80,6 +85,7 @@ public:
    * \param key String identifier which state interface to claim
    * \return state interface
    */
+  HARDWARE_INTERFACE_PUBLIC
   LoanedStateInterface claim_state_interface(const std::string & key);
 
   /// Returns all registered state interfaces keys.
@@ -88,12 +94,14 @@ public:
    *
    * \return vector of strings, containing all registered keys.
    */
+  HARDWARE_INTERFACE_PUBLIC
   std::vector<std::string> state_interface_keys() const;
 
   /// Checks whether a state interface is registered under the given key.
   /**
    * \return true if interface exist, false otherwise.
    */
+  HARDWARE_INTERFACE_PUBLIC
   bool state_interface_exists(const std::string & key) const;
 
   /// Checks whether a command interface is already claimed.
@@ -105,6 +113,7 @@ public:
    * \param key string identifying the interface to check.
    * \return true if interface is already claimed, false if available.
    */
+  HARDWARE_INTERFACE_PUBLIC
   bool command_interface_is_claimed(const std::string & key) const;
 
   /// Claim a command interface given its key.
@@ -116,6 +125,7 @@ public:
    * \param key String identifier which command interface to claim
    * \return command interface
    */
+  HARDWARE_INTERFACE_PUBLIC
   LoanedCommandInterface claim_command_interface(const std::string & key);
 
   /// Returns all registered command interfaces keys.
@@ -124,18 +134,21 @@ public:
    *
    * \return vector of strings, containing all registered keys.
    */
+  HARDWARE_INTERFACE_PUBLIC
   std::vector<std::string> command_interface_keys() const;
 
   /// Checks whether a command interface is registered under the given key.
   /**
    * \return true if interface exist, false otherwise.
    */
+  HARDWARE_INTERFACE_PUBLIC
   bool command_interface_exists(const std::string & key) const;
 
   /// Return the number of loaded actuator components.
   /**
    * \return number of actuator components.
    */
+  HARDWARE_INTERFACE_PUBLIC
   size_t actuator_components_size() const;
 
   /// Import a hardware component which is not listed in the URDF
@@ -148,12 +161,14 @@ public:
    * externally and prior to the call to import.
    * \param actuator pointer to the actuator interface.
    */
+  HARDWARE_INTERFACE_PUBLIC
   void import_component(std::unique_ptr<ActuatorInterface> actuator);
 
   /// Return the number of loaded sensor components.
   /**
    * \return number of sensor components.
    */
+  HARDWARE_INTERFACE_PUBLIC
   size_t sensor_components_size() const;
 
   /// Import a hardware component which is not listed in the URDF
@@ -166,12 +181,14 @@ public:
    * externally and prior to the call to import.
    * \param sensor pointer to the sensor interface.
    */
+  HARDWARE_INTERFACE_PUBLIC
   void import_component(std::unique_ptr<SensorInterface> sensor);
 
   /// Return the number of loaded system components.
   /**
    * \return number of system components.
    */
+  HARDWARE_INTERFACE_PUBLIC
   size_t system_components_size() const;
 
   /// Import a hardware component which is not listed in the URDF
@@ -184,24 +201,30 @@ public:
    * externally and prior to the call to import.
    * \param system pointer to the system interface.
    */
+  HARDWARE_INTERFACE_PUBLIC
   void import_component(std::unique_ptr<SystemInterface> system);
 
   /// Return status for all components.
   /**
    * \return map of hardware names and their status
    */
+  HARDWARE_INTERFACE_PUBLIC
   std::unordered_map<std::string, status> get_components_status();
 
   /// Start all loaded hardware components.
+  HARDWARE_INTERFACE_PUBLIC
   void start_components();
 
   /// Stops all loaded hardware components.
+  HARDWARE_INTERFACE_PUBLIC
   void stop_components();
 
   /// Reads all loaded hardware components.
+  HARDWARE_INTERFACE_PUBLIC
   void read();
 
   /// Write all loaded hardware components.
+  HARDWARE_INTERFACE_PUBLIC
   void write();
 
 private:
