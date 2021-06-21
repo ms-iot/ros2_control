@@ -67,7 +67,7 @@ ament_target_dependencies(
 )
 # Causes the visibility macros to use dllexport rather than dllimport,
 # which is appropriate when building the dll but not consuming it.
-target_compile_definitions(fake_components PRIVATE "HARDWARE_INTERFACE_BUILDING_DLL")
+target_compile_definitions(fake_components PRIVATE "FAKE_COMPONENTS_BUILDING_DLL")
 # prevent pluginlib from using boost
 target_compile_definitions(fake_components PUBLIC "PLUGINLIB__DISABLE_BOOST_FUNCTIONS")
 

@@ -27,13 +27,14 @@
 #include "hardware_interface/types/hardware_interface_return_values.hpp"
 #include "hardware_interface/types/hardware_interface_status_values.hpp"
 #include "hardware_interface/types/hardware_interface_type_values.hpp"
+#include "fake_components/visibility_control.h"
 
 using hardware_interface::return_type;
 
 namespace fake_components
 {
 
-class GenericSystem : public hardware_interface::BaseInterface<hardware_interface::SystemInterface>
+class FAKE_COMPONENTS_PUBLIC GenericSystem : public hardware_interface::BaseInterface<hardware_interface::SystemInterface>
 {
 public:
   return_type
